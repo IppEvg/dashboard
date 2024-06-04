@@ -1,4 +1,4 @@
-# dashboard
+# rick_and_morty
 
 ## Project setup
 ```
