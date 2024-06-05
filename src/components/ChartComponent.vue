@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref,watch } from "vue";
 
 export default defineComponent({
   name: "ChartComponent",
@@ -58,7 +58,9 @@ export default defineComponent({
     });
 
     const series = ref([props.per]);
-
+    watch(()=>props.per,(newVal) => {
+        series.value = [newVal];
+      })
     return {
       chartOptions,
       series,
