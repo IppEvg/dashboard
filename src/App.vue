@@ -1,15 +1,16 @@
 <script>
-import HeaderComp from '@/components/Header.vue'
-
+import HeaderComp from "@/components/Header.vue";
+import MainComp from "@/components/Main.vue";
 export default {
-  components: {HeaderComp}
-}
+  components: { HeaderComp, MainComp },
+};
 </script>
 
 <template>
-   <v-app>
-     <HeaderComp></HeaderComp>
-   </v-app>
+  <v-app>
+    <HeaderComp></HeaderComp>
+    <MainComp></MainComp>
+  </v-app>
 </template>
 
 <style>
@@ -19,6 +20,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-
 }
 </style>
