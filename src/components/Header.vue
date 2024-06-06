@@ -1,12 +1,33 @@
 <script>
-import { ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
+import BurgerMenu from "./BurgerMenu.vue";
 
 export default {
+  components: { BurgerMenu },
   name: "HeaderComp",
   setup() {
+    const isLargeScreen = ref(window.innerWidth > 800);
+
+    const updateScreenSize = () => {
+      isLargeScreen.value = window.innerWidth > 800;
+    };
+    const showBurgerMenu = () => {
+      showen.value = !showen.value;
+    };
+    const showen = ref(false);
+    onMounted(() => {
+      window.addEventListener("resize", updateScreenSize);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener("resize", updateScreenSize);
+    });
     const links = ref(["Dashboard", "Projects", "Issues", "Agile"]);
     return {
       links,
+      isLargeScreen,
+      showen,
+      showBurgerMenu,
     };
   },
 };
@@ -16,16 +37,24 @@ export default {
   <header>
     <div class="burgerMenu">
       <div>
-        <v-btn class="burgerIcon" variant="text">
+        <v-btn class="burgerIcon" v-if="isLargeScreen" disabled variant="text">
+          <img src="/assets/menu50.png" alt="BM" />
+        </v-btn>
+        <v-btn class="burgerIcon" v-else @click="showBurgerMenu" variant="text">
           <img src="/assets/menu50.png" alt="BM" />
         </v-btn>
       </div>
+      <BurgerMenu
+        class="burgerMenu_window"
+        :links="links"
+        v-if="showen"
+      ></BurgerMenu>
     </div>
-    <div class="linksMenu">
+    <div class="linksMenu" v-show="isLargeScreen">
       <v-select
         solo
-        v-for="(link, id) in links"
-        :key="id"
+        v-for="(link, idx) in links"
+        :key="idx"
         density="comfortable"
         :label="link"
         variant="underlined"
@@ -40,15 +69,27 @@ export default {
         variant="solo"
       >
       </v-text-field>
-      <div class="loginMenu_item">
+      <v-btn
+        class="burgerIcon loginMenu_item"
+        :style="{ padding: '0px', minWidth: '0' }"
+        variant="text"
+      >
         <img src="/assets/help50.png" alt="Help" />
-      </div>
-      <div class="loginMenu_item">
+      </v-btn>
+      <v-btn
+        class="burgerIcon loginMenu_item"
+        :style="{ padding: '0px', minWidth: '0' }"
+        variant="text"
+      >
         <img src="/assets/gear32.png" alt="Gear" />
-      </div>
-      <div class="loginMenu_item">
+      </v-btn>
+      <v-btn
+        class="burgerIcon loginMenu_item"
+        :style="{ padding: '0px', minWidth: '0' }"
+        variant="text"
+      >
         <img src="/assets/account30.png" alt="Account" />
-      </div>
+      </v-btn>
     </div>
   </header>
 </template>
@@ -61,11 +102,22 @@ header {
   align-items: center;
   color: white;
   padding: 5px 0;
+  height: 55px;
   div {
     display: flex;
     justify-content: left;
     align-items: center;
     gap: 5px;
+  }
+  .burgerMenu {
+    position: relative;
+  }
+  .burgerMenu_window {
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    padding: 15% 30%;
+    z-index: 5;
   }
   .burgerIcon {
     img {
@@ -73,10 +125,15 @@ header {
       height: 30px;
     }
   }
+  .v-label.v-field-label {
+    max-width: fit-content;
+  }
   .linksMenu,
   .loginMenu {
     display: flex;
     align-items: center;
+    height: 100%;
+    padding: 0 5px;
     .linksMenu_select {
       font-size: 6px;
       min-width: 100px;
@@ -87,6 +144,11 @@ header {
     }
     &_btn {
       background-color: rgba(59, 129, 197);
+    }
+    &_item {
+      --v-btn-size: 0.3rem;
+      min-width: none;
+      max-width: 30px;
     }
   }
   .v-select .v-field.v-field {
@@ -124,6 +186,9 @@ header {
     img {
       width: 100%;
     }
+  }
+  @media (max-width: 800px) {
+    grid-template-columns: 0.9fr 9fr;
   }
 }
 </style>

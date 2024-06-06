@@ -2,7 +2,6 @@
   <div>
     <apexchart
       type="radialBar"
-      height="350"
       :options="chartOptions"
       :series="series"
     ></apexchart>
@@ -10,7 +9,7 @@
 </template>
 
 <script>
-import { defineComponent, ref,watch } from "vue";
+import { defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
   name: "ChartComponent",
@@ -40,15 +39,20 @@ export default defineComponent({
             name: {
               show: true,
               color: "#FF0000",
-              border: "1px",
               fontSize: "13px",
+              style: {
+                border: "1px",
+                fontSize: "14px",
+                colors: "#FF0000",
+              },
             },
             value: {
               show: true,
               style: {
-                fontSize: "14px",
-                colors: ["#FF0000"],
+                fontSize: "50px",
+                colors: "#FF0000",
               },
+              offsetY: -50,
             },
           },
         },
@@ -58,9 +62,12 @@ export default defineComponent({
     });
 
     const series = ref([props.per]);
-    watch(()=>props.per,(newVal) => {
+    watch(
+      () => props.per,
+      (newVal) => {
         series.value = [newVal];
-      })
+      }
+    );
     return {
       chartOptions,
       series,

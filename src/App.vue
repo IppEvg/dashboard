@@ -1,15 +1,19 @@
 <script>
 import HeaderComp from "@/components/Header.vue";
 import MainComp from "@/components/Main.vue";
+import FooterComp from "./components/FooterComp.vue";
 export default {
-  components: { HeaderComp, MainComp },
+  components: { HeaderComp, MainComp, FooterComp },
 };
 </script>
 
 <template>
   <v-app>
-    <HeaderComp></HeaderComp>
-    <MainComp></MainComp>
+    <div class="wrapper">
+      <HeaderComp></HeaderComp>
+      <MainComp></MainComp>
+    </div>
+    <FooterComp></FooterComp>
   </v-app>
 </template>
 
@@ -20,5 +24,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 </style>

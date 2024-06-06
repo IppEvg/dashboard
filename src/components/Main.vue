@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from "vue";
 import ChartComponent from "./ChartComponent.vue";
 import ColumnChart from "./ColumnChart.vue";
-import OptionsChart from "./OptionsChart.vue"
+import OptionsChart from "./OptionsChart.vue";
 
 export default {
   name: "MainComp",
@@ -36,10 +36,13 @@ export default {
         dataList.value[0].delivered
       );
     });
-    const totalWork = computed(()=> {
-       return dataList.value[2].series.reduce((sum, current) => sum + current.data[current.data.length-1], 0)
-      })
-    return { dataList, total, totalIssues,totalWork };
+    const totalWork = computed(() => {
+      return dataList.value[2].series.reduce(
+        (sum, current) => sum + current.data[current.data.length - 1],
+        0
+      );
+    });
+    return { dataList, total, totalIssues, totalWork };
   },
 };
 </script>
@@ -100,7 +103,10 @@ export default {
           <span class="span">Total</span> Issues Count:
           <span class="span">{{ totalIssues }}</span>
         </h5>
-          <ChartComponent class="chartComp" :per="dataList[1].per"></ChartComponent>
+        <ChartComponent
+          class="chartComp"
+          :per="dataList[1].per"
+        ></ChartComponent>
         <div class="down">
           <div class="down_left">{{ totalIssues }} Total issues</div>
           <div class="down_right">
@@ -111,7 +117,7 @@ export default {
     </div>
     <div class="section_item middle">
       <div class="name">
-          <h5>Demo/{{ dataList[2].title }}</h5>
+        <h5>Demo/{{ dataList[2].title }}</h5>
       </div>
       <ColumnChart class="colChart" :list="dataList[2]"></ColumnChart>
       <div class="down">
@@ -127,14 +133,20 @@ export default {
           <h5>Demo/{{ dataList[3].title }}</h5>
         </div>
         <div class="property">
-          <div class="property_item" >
-            <v-btn class="no-uppercase" size="x-small" v-for="(el,idx) in dataList[3].property" :key="idx">{{ el }}</v-btn>
+          <div class="property_item">
+            <v-btn
+              class="no-uppercase"
+              size="x-small"
+              v-for="(el, idx) in dataList[3].property"
+              :key="idx"
+              >{{ el }}</v-btn
+            >
           </div>
-          <div class="property_item" >
-            <v-btn class="icons" variant="text" size="1.5rem" >
+          <div class="property_item">
+            <v-btn class="icons" variant="text" size="1.5rem">
               <img src="/assets/perezagruzit.png" alt="Reload" />
             </v-btn>
-            <v-btn class="icons" variant="text" size="1.5rem" >
+            <v-btn class="icons" variant="text" size="1.5rem">
               <img src="/assets/krest.png" alt="Krest" />
             </v-btn>
           </div>
@@ -146,24 +158,24 @@ export default {
             <h5>Demo/{{ dataList[4].title }}</h5>
           </div>
           <div class="name_right">
-            <v-btn class="icons" variant="text" size="x-small" >
+            <v-btn class="icons" variant="text" size="x-small">
               <img src="/assets/strelki.png" alt="png" />
             </v-btn>
-            <v-btn class="icons" variant="text" size="x-small" >
+            <v-btn class="icons" variant="text" size="x-small">
               <img src="/assets/svernut.png" alt="png" />
             </v-btn>
-            <v-btn class="icons" variant="text" size="x-small" >
+            <v-btn class="icons" variant="text" size="x-small">
               <img src="/assets/strelka_vniz.png" alt="png" />
             </v-btn>
           </div>
         </div>
-        <OptionsChart :data="dataList[4]" ></OptionsChart>
+        <OptionsChart :data="dataList[4]" class="optionsChart"></OptionsChart>
         <div class="down">
-        <div class="down_left">{{ totalIssues }} Total issues</div>
-        <div class="down_right">
-          Remaining Emistate <span class="span">by</span> Team
+          <div class="down_left">{{ totalIssues }} Total issues</div>
+          <div class="down_right">
+            Remaining Emistate <span class="span">by</span> Team
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </section>
@@ -181,7 +193,6 @@ export default {
     display: flex;
     align-items: center;
     gap: 10px;
-    
   }
 }
 .no-uppercase {
@@ -200,27 +211,26 @@ section {
 .section_item {
   max-width: 30%;
   min-width: 350px;
-  min-height: fit-content;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
   .section_item_up,
   .section_item_down {
     border: 1px solid grey;
     border-radius: 5px;
-    
   }
   .name {
-      background-color: rgba(32, 80, 129);
-      color: white;
+    background-color: rgba(32, 80, 129);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    &_right {
       display: flex;
-      justify-content: space-between;
-      padding: 5px;
-      &_right{
-        display: flex;
-        justify-content: end;
-      }
+      justify-content: end;
     }
+  }
   .values {
     display: flex;
     justify-content: space-around;
@@ -256,32 +266,41 @@ section {
   border-radius: 5px;
   justify-content: space-between;
 }
-.chartComp{
-  min-height: 255px;
-}
-.colChart{
+.colChart {
   padding: 5px;
 }
-.property{
+.property {
   display: flex;
   justify-content: space-between;
-  &_item{
+  &_item {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 1px;
     margin: 10px;
-    letter-spacing:0ch;
+    letter-spacing: 0ch;
   }
 }
 
-.icons{
-  .v-btn, .v-btn--size-x-small{
-    padding: 1px ;
+.icons {
+  .v-btn,
+  .v-btn--size-x-small {
+    padding: 1px;
     min-width: 16px;
-
-    // letter-spacing: 0;
   }
 }
-
+@media (max-width: 650px) {
+  .title {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    .titleItem,
+    .titleOptions {
+      padding: 3px;
+    }
+  }
+}
+// .optionsChart {
+//   height: 100%;
+// }
 </style>

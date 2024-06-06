@@ -2,7 +2,7 @@
   <div>
     <apexchart
       type="bar"
-      height="250%"
+      height="200%"
       :options="chartOptions"
       :series="series"
     ></apexchart>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { defineComponent, ref,watch } from "vue";
+import { defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
   name: "ColumnChart",
@@ -18,13 +18,16 @@ export default defineComponent({
     list: {
       type: Object,
       required: true,
-    }
+    },
   },
   setup(props) {
     const list = ref(props.list);
-    watch(()=>props.list,(newVal) => {
+    watch(
+      () => props.list,
+      (newVal) => {
         list.value = newVal;
-      })
+      }
+    );
     const chartOptions = ref({
       chart: {
         stacked: true,
@@ -34,13 +37,12 @@ export default defineComponent({
       dataLabels: {
         enabled: false,
       },
-     
+
       xaxis: {
-        categories: list.value.categories
-        ,
+        categories: list.value.categories,
         title: {
-         text: list.value.titleTextX
-        } 
+          text: list.value.titleTextX,
+        },
       },
       yaxis: {
         title: {
@@ -50,10 +52,10 @@ export default defineComponent({
     });
 
     const series = ref(list.value.series);
-    
+
     return {
       chartOptions,
-      series
+      series,
     };
   },
 });
