@@ -144,10 +144,10 @@ export default {
           </div>
           <div class="property_item">
             <v-btn class="icons" variant="text" size="1.5rem">
-              <img src="/assets/perezagruzit.png" alt="Reload" />
+              <img src="./assets/perezagruzit.png" alt="Reload" />
             </v-btn>
             <v-btn class="icons" variant="text" size="1.5rem">
-              <img src="/assets/krest.png" alt="Krest" />
+              <img src="./assets/krest.png" alt="Krest" />
             </v-btn>
           </div>
         </div>
@@ -159,13 +159,13 @@ export default {
           </div>
           <div class="name_right">
             <v-btn class="icons" variant="text" size="x-small">
-              <img src="/assets/strelki.png" alt="png" />
+              <img src="./assets/strelki.png" alt="png" />
             </v-btn>
             <v-btn class="icons" variant="text" size="x-small">
-              <img src="/assets/svernut.png" alt="png" />
+              <img src="./assets/svernut.png" alt="png" />
             </v-btn>
             <v-btn class="icons" variant="text" size="x-small">
-              <img src="/assets/strelka_vniz.png" alt="png" />
+              <img src="./assets/strelka_vniz.png" alt="png" />
             </v-btn>
           </div>
         </div>

@@ -38,10 +38,10 @@ export default {
     <div class="burgerMenu">
       <div>
         <v-btn class="burgerIcon" v-if="isLargeScreen" disabled variant="text">
-          <img src="/assets/menu50.png" alt="BM" />
+          <img src="./assets/menu50.png" alt="BM" />
         </v-btn>
         <v-btn class="burgerIcon" v-else @click="showBurgerMenu" variant="text">
-          <img src="/assets/menu50.png" alt="BM" />
+          <img src="./assets/menu50.png" alt="BM" />
         </v-btn>
       </div>
       <BurgerMenu
@@ -74,21 +74,21 @@ export default {
         :style="{ padding: '0px', minWidth: '0' }"
         variant="text"
       >
-        <img src="/assets/help50.png" alt="Help" />
+        <img src="./assets/help50.png" alt="Help" />
       </v-btn>
       <v-btn
         class="burgerIcon loginMenu_item"
         :style="{ padding: '0px', minWidth: '0' }"
         variant="text"
       >
-        <img src="/assets/gear32.png" alt="Gear" />
+        <img src="./assets/gear32.png" alt="Gear" />
       </v-btn>
       <v-btn
         class="burgerIcon loginMenu_item"
         :style="{ padding: '0px', minWidth: '0' }"
         variant="text"
       >
-        <img src="/assets/account30.png" alt="Account" />
+        <img src="./assets/account30.png" alt="Account" />
       </v-btn>
     </div>
   </header>
