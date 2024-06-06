@@ -6,10 +6,10 @@ export default {
   components: { BurgerMenu },
   name: "HeaderComp",
   setup() {
-    const isLargeScreen = ref(window.innerWidth > 800);
+    const isLargeScreen = ref(window.innerWidth >= 900);
 
     const updateScreenSize = () => {
-      isLargeScreen.value = window.innerWidth > 800;
+      isLargeScreen.value = window.innerWidth >= 900;
     };
     const showBurgerMenu = () => {
       showen.value = !showen.value;
@@ -187,7 +187,7 @@ header {
       width: 100%;
     }
   }
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     grid-template-columns: 0.9fr 9fr;
   }
 }

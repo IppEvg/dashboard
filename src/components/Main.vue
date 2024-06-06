@@ -209,7 +209,7 @@ section {
   font-weight: 100;
 }
 .section_item {
-  max-width: 30%;
+  width: 30%;
   min-width: 350px;
   display: flex;
   flex-direction: column;
